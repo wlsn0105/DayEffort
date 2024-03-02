@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            border: solid 1px slategray;
+        }
+        header {
+            border-bottom: solid 1px slategrey;
+            padding-left: 20px;
+        }
+        footer {
+            border-top: solid 1px slategrey;
+            text-align: center;
+        }
+        .content {
+            display: flex;
+        }
+        .content nav {
+            border-right: solid 1px slategray;
+        }
+        .content aside {
+            border-left: solid 1px slategrey;
+        }
+        nav, aside {
+            flex-basis: 150px;
+            flex-shrink: 0;
+        }
+        main {
+            padding: 10px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>지누코딩</h1>
+        </header>
+        <section class="content">
+            <nav>
+                <ul>
+                    <li>html</li>
+                    <li>css</li>
+                    <li>javascript</li>
+                </ul>
+            </nav>
+            <main>
+                지누코딩은 css연습중입니다.<br>
+                Lorem, ipsum dolor em pro et cupiditate quos amet incidunt sit ipsam architecto voluptatem ipsa illum, magnam illo, culpa distinctio ea officia? Deserunt, laboriosam. Atque deleniti doloremque optio, ea similique consequuntur dolore!
+                Aperiam esse illum voluptas tempora ipsum distinctio accusamus aliquam, ad nesciunt nisi magnam exercitationem natus nihil quam ut laudantium! Molestias ullam accusamus maiores delectus? Voluptatem quaerat quasi amet cum consequuntur!
+                Maxime labore mollitia reprehenderit exercitationem facere aperiam? Similique aspernatur eos exercitationem modi ducimus possimus doloremque earum libero porro, quibusdam incidunt commodi hic harum deserunt laudantium. Porro, ducimus? Modi, cupiditate corporis?
+                <p>
+                    Lorem ipsum dololibero similique fugit provident ipsa. Sit numquam tempore qui accusamus, quo ex nostrum enim magni suscipit consectetur fugit rem deserunt error mollitia commodi. Temporibus, deleniti? Iusto, labore reiciendis!
+                    Id culpa exercitationem rerum voluptatem esse fugit alias, dolorem tenetur? Nesciunt similique itaque modi, tempora necessitatibus iusto earum rerum, quia vitae voluptate praesentium quod assumenda minima dolorum. Exercitationem, dicta magni?
+                </p>
+            </main>
+            <aside>
+                AD
+            </aside>
+        </section>
+        <footer>
+            <a href="https://github.com/wlsn0105">지누 깃허브</a>
+        </footer>
+    </div>
+</body>
+</html>
