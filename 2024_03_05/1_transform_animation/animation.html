@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes sample {
+            0% {
+                transform: translate(0, 0);   
+            }
+            50% {
+                transform: translate(200px, 0) skew(20deg) scale(1.5);
+                background-color: red;
+            }
+            100% {
+                transform: translate(300px, 400px);   
+            }
+        }
+        .box {
+            display: flex;
+            /* text-align: center; */
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            border: solid 1px black;
+            background-color: #fff000;
+            animation: sample 2s ease forwards;
+        }
+        .box:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <h1>Animation</h1>
+    <div class="box">Box</div>
+</body>
+</html>
