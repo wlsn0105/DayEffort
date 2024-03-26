@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        .counter {
+            font-size: 3rem;
+        }
+        .increase, .decrease {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter">0</div>
+    <button class="increase">+</button>
+    <button class="decrease">-</button>
+
+    <script>
+        const counter = document.querySelector('.counter');
+        const increase = document.querySelector('.increase');
+        const decrease = document.querySelector('.decrease');
+
+        let num = 0;
+
+        // render라는 변수를 만들어서 호출시키기만 하면 됨
+        // const render = () => {
+        //     counter.innerText = num;
+        // }
+
+        increase.addEventListener('click', () => {
+            num++;
+            console.log(num);
+            counter.innerText = num;
+
+            // counter의 text를 num값으로 업데이트시키는 render를 호출함
+            // render();
+        })
+
+        decrease.addEventListener('click', () => {
+            num--;
+            console.log(num);
+            counter.innerText = num;
+            
+            // counter의 text를 num값으로 업데이트시키는 render를 호출함
+            // render();
+        })
+ 
+    </script>
+    <script src="index.js"></script>
+</body>
+</html>
