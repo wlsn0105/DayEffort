@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>각각의 객체에 애니메이션 적용하기</title>
+	<style>
+		.bar-container {
+			display: flex;
+			align-items: flex-end;
+		}
+		.bar {
+			width: 10px;
+			height: 200px;
+			margin: 0 10px;
+			background-color: lightgray;
+			transform-origin: bottom;
+			will-change: transform;
+		}
+		.bar:nth-child(5n+1) { background-color:crimson; }
+		.bar:nth-child(5n+2) { background-color: gold; }
+		.bar:nth-child(5n+3) { background-color: forestgreen; }
+		.bar:nth-child(5n+4) { background-color: dodgerblue; }
+		.bar:nth-child(5n+5) { background-color: darkorchid; }
+	</style>
+</head>
+<body>
+	<div class="bar-container"></div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations-next.min.js"></script>
+	<script>
+		const barContainer = document.querySelector('.bar-container')
+
+		// bars는 bar들을 배열에 넣기 위해 선언
+		const bars = [];
+
+		let bar;
+		for(let i = 0; i < 30; i++) {
+			// div요소를 가진 bar를 만듦
+			bar = document.createElement('div');
+			// bar클래스를 추가
+			bar.classList.add('bar');
+			// barContainer에 bar 추가
+			barContainer.append(bar);
+			// bars에 bar추가
+			bars.push(bar);
+		}
+
+		const keyframes = [
+			{transform: 'scaleY(0)'},
+			{transform: 'scaleY(1)'},
+		]
+		const options = {
+			duration: 2000,
+			iterations: Infinity,
+			direction: 'alternate',
+			fill: 'both',
+			easing: 'ease'
+		}
+
+		// bars 각각의 bar에 적용, 두번째 요소에 index가 자동으로 들어감
+		// bars.forEach((bar, index) => {
+		// 	// console.log(index)
+		// 	bar.animate(keyframes, {...options, delay: index * 200});
+		// })
+
+		// 애니메이션 효과를 effects 배열에 담음
+		const effects = [];
+		
+		// bars 각각 bar의 index번호마다 적용
+		bars.forEach((bar, index) => {
+
+			// newOptions 변수에 options 효과 적용 및 index마다 지연
+			const newOptions = {...options, delay: index * 200};
+
+			// effect에 bar마다 keyframes, newOptions 효과를 새로운 KeyframeEffect에 넣음
+			const effect = new KeyframeEffect(bar, keyframes, newOptions);
+			effects.push(effect);
+		})
+
+		const groupEffect = new GroupEffect(effects);
+		const animation = document.timeline.play(groupEffect);
+
+		window.setTimeout(() => {
+			animation.pause();
+		}, 2000)
+
+		console.log(GroupEffect);
+	</script>
+</body>
+</html>
