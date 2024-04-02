@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>CSS Transition</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: coral;
+            transition: 2s;
+            /* , 0.5s; */
+            opacity: 0.2;
+        }
+        /* .box:hover {
+            transform: scale(7, 15);
+            opacity: 1;
+        } */
+        .box-action {
+            transform: translateX(300px);
+            /* background-color: blue; */
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <p class="message"></p>
+
+    <script>
+        const box = document.querySelector('.box')
+        const message = document.querySelector('.message');
+
+        // isTransitionRunning가 멈춰 있는 상태가 false 상태임 
+        let isTransitionRunning = false;
+        
+        // 클릭했을 때 isTransitionRunning가 false상태일때만 토글을 진행한다.
+        box.addEventListener('click', () => {
+        if(!isTransitionRunning) {
+            box.classList.toggle('box-action');
+        }
+
+        // isTransitionRunning상태를 true상태로 바꿔준다.
+        isTransitionRunning = true;
+
+        // 이벤트가 진행되고 0.5초뒤에 box는 제거된다.
+        setTimeout(() => {
+            box.remove()
+        }, 500)
+        })
+
+        // transitionstart일 때
+        box.addEventListener('transitionstart', (e) => {
+            console.log(`${e.propertyName} Start`);
+            message.innerText = 'Start';
+        })
+
+        // transitionend일 때
+        box.addEventListener('transitionend', (e) => {
+            console.log(`${e.propertyName} End`);
+            message.innerText = 'End';
+            isTransitionRunning = false;
+        })
+
+        // transitionrun일 때
+        box.addEventListener('transitionrun', (e) => {
+            console.log(`${e.propertyName} Run`);
+        })
+
+        // transitioncancel일 때
+        box.addEventListener('transitioncancel', (e) => {
+            console.log(`${e.propertyName} Cancel`);
+            message.innerText = 'Cancel';
+        })
+    </script>
+</body>
+</html>

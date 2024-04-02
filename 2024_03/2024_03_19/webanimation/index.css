@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    text-align: center;
+}
+.large-box {
+    border: solid 0px black;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    margin-top: 1200px;
+    background-color: aliceblue;
+}
+.medium-box {
+    background-color: aqua;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
