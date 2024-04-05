@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Motion Path</title>
+	<style>
+		.track {
+			position: relative;
+			width: 675px; /* svg viewbox랑 같은 크기로 */
+			background: #eee;
+		}
+
+		.path {
+			fill: none;
+			stroke: black;
+		}
+
+		.car {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 10px;
+			height: 20px;
+			background: red;
+			/* car의 경로를 svg의 d랑 똑같이 맞춰줌 */
+			offset-path: path("m.5,443.85V52.36C.5,23.72,23.72.5,52.36.5s51.86,23.22,51.86,51.86v286.64c0,28.64,23.22,51.86,51.86,51.86s51.86-23.22,51.86-51.86V52.36c0-28.64,23.22-51.86,51.86-51.86s51.86,23.22,51.86,51.86v426.64c0,28.64,23.22,51.86,51.86,51.86s51.86-23.22,51.86-51.86V52.36c0-28.64,23.22-51.86,51.86-51.86s51.86,23.22,51.86,51.86v226.64c0,28.64,23.22,51.86,51.86,51.86s51.86-23.22,51.86-51.86v-59.96c0-28.64,23.22-51.86,51.86-51.86");
+			/* car의 시작지점 */
+			offset-distance: 0px;
+			/* car의 각도가 기울어져 있어서 다시 돌려줘야 함 */
+			offset-rotate: auto 90deg;
+			transition: 5s;
+			cursor: pointer;
+		}
+		/* .track:hover .car {
+			offset-distance: 3200px;
+		} */
+		.buttons {
+			display: flex;
+			justify-content: center;
+			text-align: center;
+		}
+		.play, .stop {
+			width: 100px;
+			height: 50px;
+			margin-top: 10px;
+			font-size: 16px;
+			margin: 16px 4px;
+			background-color: white;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="track">
+		<div class="car"></div>
+		<!-- svg 파일은 일러스트에서 추출을 svg로 한거임 -->
+		<svg class="path-svg" viewBox="0 0 674.7 531.36">
+			<path class="path" d="m.5,443.85V52.36C.5,23.72,23.72.5,52.36.5s51.86,23.22,51.86,51.86v286.64c0,28.64,23.22,51.86,51.86,51.86s51.86-23.22,51.86-51.86V52.36c0-28.64,23.22-51.86,51.86-51.86s51.86,23.22,51.86,51.86v426.64c0,28.64,23.22,51.86,51.86,51.86s51.86-23.22,51.86-51.86V52.36c0-28.64,23.22-51.86,51.86-51.86s51.86,23.22,51.86,51.86v226.64c0,28.64,23.22,51.86,51.86,51.86s51.86-23.22,51.86-51.86v-59.96c0-28.64,23.22-51.86,51.86-51.86"/>
+		</svg>
+		<div class="buttons">
+			<button class="play">Play</button>
+			<button class="stop">Stop!!!</button>
+		</div>
+	</div>
+
+	<script>
+		const car = document.querySelector('.car');
+		const track = document.querySelector('.track');
+		const play = document.querySelector('.play');
+		const stop = document.querySelector('.stop');
+
+		const animation = car.animate(
+			[
+				{offsetDistance: 0},
+				{offsetDistance: '100%'},
+			],
+			{
+				duration: 5000,
+				iterations: Infinity,
+				easing: 'ease'
+			}
+		)
+		
+		animation.pause();
+
+		// track을 클릭 시, play 및 stop
+		// track.addEventListener('click', () => {
+		// 	if (animation.playState === 'paused') {
+		// 		animation.play();
+		// 	}
+		// 	// else if (animation.playState === 'running') {
+		// 	// 	animation.pause();
+		// 	// }
+		// 	else {
+		// 		animation.pause();
+		// 	}
+		// })
+		
+		// play, stop 버튼 클릭시 각 기능 실행
+		play.addEventListener('click', () => {
+			animation.play();
+		})
+		stop.addEventListener('click', () => {
+			animation.pause();
+		})
+	</script>
+</body>
+</html>
